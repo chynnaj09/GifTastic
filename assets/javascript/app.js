@@ -17,7 +17,7 @@ $(document).ready(function () {
     function displayGif() {
 
         var topic = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=1mduF6WdOT5Q8wMQO9uufvzNpoKWBzCy&limit10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=1mduF6WdOT5Q8wMQO9uufvzNpoKWBzCy&limit=10";
         
         $.ajax({
             url: queryURL,
@@ -70,7 +70,7 @@ $(document).ready(function () {
         $(".buttons-original").empty();
         // Verifying buttons
         for (var i = 0; i < topics.length; i++) {
-            let addButton = $('<button class="button">');
+            var addButton = $('<button class="button">');
             addButton.addClass("shows");
             addButton.attr("data-name", topics[i]);
             addButton.html(topics[i]);
@@ -80,16 +80,16 @@ $(document).ready(function () {
         }
     };
 
-    // New button created when field has a value entered and then cleared after confirming
+    // New button created 
     $(".add-gif").on("click", function (event) {
         event.preventDefault();
         var gifs = $(".gif-name").val().trim();
-        topic.push(gifs);
+        topics.push(gifs);
         $(".gif-name").val("");
         renderButtons();
     });
 
-    // Calls the buttons to be created in the class 'pokemon'
+    // Calls the buttons to be created 
     $(document).on("click", ".shows", displayGif);
     renderButtons();
 });
